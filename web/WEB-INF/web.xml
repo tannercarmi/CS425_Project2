@@ -14,19 +14,27 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationServlet</servlet-name>
-        <url-pattern>/RegistrationServlet</url-pattern>
+        <url-pattern>/main/RegistrationServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ReportServlet</servlet-name>
-        <url-pattern>/ReportServlet</url-pattern>
+        <url-pattern>/main/ReportServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
-        <url-pattern>/SearchServlet</url-pattern>
+        <url-pattern>/main/SearchServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>main/landing.jsp</welcome-file>
+        <welcome-file>main/index.jsp</welcome-file>
+    </welcome-file-list>
+    <security-role>
+        <description/>
+        <role-name>user</role-name>
+    </security-role>
 </web-app>
