@@ -33,16 +33,15 @@ public class RegistrationDAO {
         + "JOIN term ON term.id = registration.termid) "
         + "WHERE registration.studentid = ? AND registration.termid = ?";
     
-    
     private static final String QUERY_CREATE = "INSERT into registration (studentid, termid, crn) VALUES (?, ?, ?)";
     private static final String QUERY_DELETE = "DELETE FROM registration WHERE termid=? AND studentid=? AND crn=?";
-
     
     RegistrationDAO(DAOFactory dao) {
         this.daoFactory = dao;
     }
     
     public String find(int termid, int studentid) {
+        
         JSONObject json = new JSONObject();
         JSONArray sections = new JSONArray();
 
@@ -68,7 +67,6 @@ public class RegistrationDAO {
                 DateTimeFormatter date = DateTimeFormatter.ofPattern("LLL dd, YYYY");
                 DateTimeFormatter time = DateTimeFormatter.ofPattern("h:mm a");
 
-                
                 while (rs.next()) {
                     JSONObject section = new JSONObject();
                     
@@ -96,7 +94,6 @@ public class RegistrationDAO {
                 }
                 json.put("sections", sections);
             }
-
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -124,10 +121,10 @@ public class RegistrationDAO {
                 }
                 catch (Exception e) { e.printStackTrace(); }
             }
-
         }
 
         return JSONValue.toJSONString(json);
+        
     }
     
     public String create(int studentid, int termid, int crn) {
@@ -155,20 +152,20 @@ public class RegistrationDAO {
         catch (Exception e) { e.printStackTrace(); }
         
         finally {
-            
             if (rs != null) { try { rs.close(); } catch (Exception e) { e.printStackTrace(); } }
             if (ps != null) { try { ps.close(); } catch (Exception e) { e.printStackTrace(); } }
-            
         }
         
         return "This is not a valid CRN!";
     }
     
     public Integer getStudentId(String username) {
+        
         Integer id = null;
         Connection conn = daoFactory.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
+        
         try {
             ps = conn.prepareStatement("SELECT * FROM student WHERE username = ?");
             ps.setString(1, username);
@@ -202,6 +199,7 @@ public class RegistrationDAO {
     }
     
     public String delete(int termid, int studentid, int crn) {
+        
         JSONObject json = new JSONObject();
         json.put("success", false);
         

@@ -20,7 +20,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="scripts/jquery-3.6.1.min.js"></script>
         <script src="scripts/Project2.js"></script>
-        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <p>
@@ -45,7 +44,7 @@
         
         </form>
         <p>
-            <input type="button" value="Logout" onclick="window.open('<%= request.getContextPath() %>/MAIN/logout.jsp', '_self', false);" />
+            <input type="button" value="Logout" onclick="window.open('<%= request.getContextPath() %>/main/logout.jsp', '_self', false);" />
         </p>
     </body>
 </html>

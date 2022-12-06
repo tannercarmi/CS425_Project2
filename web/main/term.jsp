@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="edu.jsu.mcis.project2.dao.*"%>
+
 <jsp:useBean id="projBean" class="edu.jsu.mcis.project2.Bean" scope="session"/>
 
 <%

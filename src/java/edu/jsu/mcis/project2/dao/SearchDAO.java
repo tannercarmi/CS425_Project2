@@ -23,11 +23,11 @@ import org.json.simple.JSONValue;
 public class SearchDAO {
     
     private final DAOFactory daoFactory;
-    
     private final String QUERY_SUBJECT_LIST = "SELECT * FROM subject ORDER BY id";
     private final String QUERY_LEVEL_LIST = "SELECT * FROM level ORDER BY id";
     private final String QUERY_SCHEDULETYPE_LIST = "SELECT * FROM scheduletype ORDER BY id";
     private final String QUERY_TERM_LIST = "SELECT * FROM term ORDER BY id";
+    
     private static final String QUERY_FIND = "SELECT course.*, section.*, "
     + "term.name AS termname, term.`start` AS termstart, term.`end` AS termend, "
     + "scheduletype.description as scheduletype, `level`.description as `level` "
@@ -83,7 +83,6 @@ public class SearchDAO {
                 s.append("</select>");
 
             }
-
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -329,22 +328,27 @@ public class SearchDAO {
     }
     
     public String getTimeFieldsAsHTML(String type) {
+        
         StringBuilder sb = new StringBuilder();
         
         sb.append("Hour <select id=\"").append(type).append("hour\" name=\"").append(type)
                 .append("hour\" size=\"1\">");
+        
         for (int i = 0; i <= 12; i++) {
             sb.append("<option value=\"").append(i).append("\">")
                     .append(String.format("%02d", i)).append("</option>");
         }
+        
         sb.append("</select>");
         
         sb.append(" Minute <select id=\"").append(type).append("min\" name=\"").append(type)
                 .append("min\" size=\"1\">");
+        
         for (int i = 0; i <= 55; i+=5) {
             sb.append("<option value=\"").append(i).append("\">")
                     .append(String.format("%02d", i)).append("</option>");
         }
+        
         sb.append("</select>");
         
         sb.append(" AM/PM <select id=\"").append(type).append("ap\" name=\"").append(type)
@@ -354,6 +358,7 @@ public class SearchDAO {
     }
     
     public String find(HashMap<String,String> params) {
+        
         JSONObject json = new JSONObject();
         JSONArray sections = new JSONArray();
 
@@ -401,8 +406,7 @@ public class SearchDAO {
                 
                 DateTimeFormatter date = DateTimeFormatter.ofPattern("LLL dd, YYYY");
                 DateTimeFormatter time = DateTimeFormatter.ofPattern("h:mm a");
-
-                
+  
                 while (rs.next()) {
                     JSONObject section = new JSONObject();
                     
@@ -430,7 +434,6 @@ public class SearchDAO {
                 }
                 json.put("sections", sections);
             }
-
         }
         catch (Exception e) {
             e.printStackTrace();

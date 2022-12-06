@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +13,6 @@
         <title>Drop Course</title>
         <script type="text/javascript" src="scripts/Project2.js"></script>
         <script type="text/javascript" src="scripts/jquery-3.6.1.min.js"></script>
-        <link rel="stylesheet" type="text/css" media="screen" href="style.css">
     </head>
     <body>
         <a href="landing.jsp">Back</a>
@@ -36,7 +36,7 @@
             <input
                 type="button"
                 value="Logout"
-                onclick="window.open('<%= request.getContextPath() %>/MAIN/logout.jsp', '_self', false);"
+                onclick="window.open('<%= request.getContextPath() %>/main/logout.jsp', '_self', false);"
             />
         </p>
 
